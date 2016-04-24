@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 # This script is used for verify HOMEPAGE.
 # The result is influenced by network environment, since the timeout of connect url is 5 seconds as default.

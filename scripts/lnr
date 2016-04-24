@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python2
 
 # Create a *relative* symlink, just like ln --relative does but without needing
 # coreutils 8.16.

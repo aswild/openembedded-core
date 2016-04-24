@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 #
 # This script generates a solution database for a directory containing rpm packages
 # but tries to be efficient about this, only doing so when the packages have changed
