@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 # Simple graph query utility
 # useful for getting answers from .dot files produced by bitbake -g

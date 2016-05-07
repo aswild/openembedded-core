@@ -1,4 +1,4 @@
-#!/usr/bin/env python -tt
+#!/usr/bin/env python2 -tt
 # vim: ai ts=4 sts=4 et sw=4
 #
 # Copyright (c) 2009, 2010, 2011 Intel, Inc.

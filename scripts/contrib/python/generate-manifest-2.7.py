@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 # generate Python Manifest for the OpenEmbedded build system
 # (C) 2002-2010 Michael 'Mickey' Lauer <mlauer@vanille-media.de>
