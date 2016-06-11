@@ -144,6 +144,8 @@ def add(args, config, basepath, workspace):
         extracmdopts += ' --also-native'
     if args.src_subdir:
         extracmdopts += ' --src-subdir "%s"' % args.src_subdir
+    if args.autorev:
+        extracmdopts += ' -a'
 
     tempdir = tempfile.mkdtemp(prefix='devtool')
     try:
@@ -996,7 +998,7 @@ def _export_local_files(srctree, rd, destdir):
         bb.process.run(['git', 'checkout', tree, '--', '.'], cwd=srctree,
                         env=dict(os.environ, GIT_WORK_TREE=destdir,
                                  GIT_INDEX_FILE=tmp_index))
-        new_set = _git_ls_tree(srctree, tree, True).keys()
+        new_set = list(_git_ls_tree(srctree, tree, True).keys())
     elif os.path.isdir(local_files_dir):
         # If not tracked by Git, just copy from working copy
         new_set = _ls_tree(os.path.join(srctree, 'oe-local-files'))
@@ -1307,7 +1309,7 @@ def reset(args, config, basepath, workspace):
         raise DevtoolError("Recipe must be specified, or specify -a/--all to "
                            "reset all recipes")
     if args.all:
-        recipes = workspace.keys()
+        recipes = list(workspace.keys())
     else:
         recipes = [args.recipename]
 
@@ -1390,6 +1392,7 @@ def register_commands(subparsers, context):
     parser_add.add_argument('--fetch', '-f', help='Fetch the specified URI and extract it to create the source tree (deprecated - pass as positional argument instead)', metavar='URI')
     parser_add.add_argument('--version', '-V', help='Version to use within recipe (PV)')
     parser_add.add_argument('--no-git', '-g', help='If fetching source, do not set up source tree as a git repository', action="store_true")
+    parser_add.add_argument('--autorev', '-a', help='When fetching from a git repository, set SRCREV in the recipe to a floating revision instead of fixed', action="store_true")
     parser_add.add_argument('--binary', '-b', help='Treat the source tree as something that should be installed verbatim (no compilation, same directory structure). Useful with binary packages e.g. RPMs.', action='store_true')
     parser_add.add_argument('--also-native', help='Also add native variant (i.e. support building recipe for the build host as well as the target machine)', action='store_true')
     parser_add.add_argument('--src-subdir', help='Specify subdirectory within source tree to use', metavar='SUBDIR')
